@@ -11,7 +11,7 @@ class DoctorForm(forms.ModelForm):
     class Meta:
         model = Doctor
         fields = [
-            'name', 'degree','age','gender', 'address', 'phone',
+            'name', 'degree','dob','gender', 'description', 'address', 'phone',
             'email', 'status' 
          
         ]
@@ -21,7 +21,7 @@ class PatientForm(forms.ModelForm):
     class Meta:
         model = Patient
         fields = [
-            'name', 'doctor','age','gender', 'address', 'phone',
+            'name', 'doctor','age','gender', 'description', 'address', 'phone',
             'email', 'status' 
          
         ]

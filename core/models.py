@@ -57,13 +57,15 @@ GENDER = (
 class Doctor(models.Model):
     name = models.CharField(max_length=60)
     degree = models.CharField(max_length=60)
-    age = models.PositiveIntegerField()
+    dob = models.DateField()
+    age = models.PositiveIntegerField(blank=True, null=True)
     gender = models.CharField(max_length=10, choices=GENDER)
     address = models.ForeignKey(
         'Address', on_delete=models.SET_NULL, 
         null=True, blank=True)
     phone = models.CharField(max_length=60, null=True, blank=True)
     email = models.EmailField(max_length=60)
+    description = models.TextField(null=True, blank=True)
     status = models.BooleanField(default=True)
 
     def __str__(self):
@@ -71,6 +73,12 @@ class Doctor(models.Model):
 
     def get_absolute_url(self):
         return reverse('doctors_detail', kwargs={'pk': self.pk})
+
+    def get_update_url(self):
+        return reverse('doctors_update', kwargs={'pk': self.pk})
+
+    def get_delete_url(self):
+        return reverse('doctors_delete', args=(self.pk,))
 
 
 class Address(models.Model):
@@ -121,13 +129,15 @@ class Schedule(models.Model):
 
 class Patient(models.Model):
     name = models.CharField(max_length=60)
-    age = models.PositiveIntegerField()
+    dob = models.DateField()
+    age = models.PositiveIntegerField(null=True, blank=True)
     gender = models.CharField(max_length=10, choices=GENDER)
     address = models.ForeignKey(
         'Address', on_delete=models.SET_NULL, 
         null=True, blank=True)
     phone = models.CharField(max_length=60, null=True, blank=True)
     email = models.EmailField(max_length=60)
+    description = models.TextField(null=True, blank=True)
     status = models.BooleanField(default=True)
     doctor = models.ForeignKey(
         'Doctor', on_delete=models.SET_NULL, 

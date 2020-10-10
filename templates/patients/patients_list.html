@@ -1,9 +1,14 @@
-{% extends '_base.html' %} {% load static %} {% block main %}
+{% extends '_base.html' %} {% load static %}  {% load widget_tweaks %} {% block main %}
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <button type="button" class="btn btn-primary px-4 mt-0 mb-3" onclick="location.href='../hospital/add-patient.html'"><i class="mdi mdi-plus-circle-outline mr-2"></i>Add New Patient</button>
+                
+                <!-- <button type="button" class="btn btn-primary px-4 mt-0 mb-3" onclick="location.href='../hospital/add-patient.html'"><i class="mdi mdi-plus-circle-outline mr-2"></i>Add New Patient</button> -->
+                <button type="button" class="btn btn-primary btn-outline-white px-4 mt-0 mb-3">
+                
+                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".patient-create"><i class="mdi mdi-plus-circle-outline mr-2"></i><span style="color: white;">Add New Patient</span> </a>
+                </button>
                 <div class="table-responsive">
                     <div id="datatable_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
                         <div class="row">
@@ -83,3 +88,82 @@
     <!--end col-->
 </div>
 {% endblock main %}
+
+
+{% block custome_js %}
+
+<div class="modal fade bs-example-modal-lg patient-create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="myLargeModalLabel">Add a New Doctor</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{% url 'patients_create' %}">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="DoctorName">Patient Name</label>
+                                <!-- <input type="text" class="form-control" id="DoctorName" value="Dr.Wendy Keen" required=""> -->
+                                {% render_field form.name class="form-control" placeholder="Full Name" %}
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DoctorDegree">Doctor</label>
+                                <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                {% render_field form.doctor class="form-control" %}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="Specialties_select" class="mr-2">Gender</label>
+                                {% render_field form.gender class="form-control" %}
+                               
+                            </div>
+                        </div>                                    
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="message">Date of Birth</label>
+                                {% render_field form.dob class="form-control" type="date" %}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DoctorDegree">Phone</label>
+                                <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                {% render_field form.phone class="form-control" placeholder="Ex: +964 77..." %}
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label for="DoctorDegree">Emain</label>
+                                <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                {% render_field form.email class="form-control" placeholder="Enter an email..." %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">  
+                                                    
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="message">Experience Info</label>
+                                <!-- <textarea class="form-control" rows="3" id="message" value="">4 years experience in Apollo Hospital</textarea> -->
+                                {% render_field form.description rows="3" placeholder="About Me..." class="form-control" %}
+                            </div>  
+                        </div>
+                    </div> 
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>  
+                    <!-- <button type="button" class="btn btn-sm btn-danger">Delete</button>              -->
+                </form>  
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal create --> 
+
+{% endblock custome_js %}

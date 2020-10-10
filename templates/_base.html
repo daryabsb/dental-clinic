@@ -10,6 +10,8 @@
     <meta content="A premium admin dashboard template by Mannatthemes" name="description" />
     <meta content="Mannatthemes" name="author" />
 
+    {% block custom_css %}{% endblock custom_css %}
+
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
 
@@ -448,13 +450,13 @@
                             <div class="float-right">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="javascript:void(0);">Hospital</a></li>
-                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Pages</a></li>
-                                    <li class="breadcrumb-item active">Starter</li>
+                                    <li class="breadcrumb-item"><a href="javascript:void(0);">Doctors</a></li>
+                                    <li class="breadcrumb-item active">{{view.title}}</li>
                                 </ol>
                                 <!--end breadcrumb-->
                             </div>
                             <!--end /div-->
-                            <h4 class="page-title">Starter</h4>
+                            <h4 class="page-title">{{view.page_head}}</h4>
                         </div>
                         <!--end page-title-box-->
                     </div>
@@ -479,6 +481,8 @@
         <!--end footer-->
     </div>
     <!-- end page-wrapper -->
+
+    {% block custome_js %} {% endblock %}
 
     <!-- jQuery  -->
     <script src="{% static 'assets/js/jquery.min.js' %}"></script>

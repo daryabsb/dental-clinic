@@ -1,153 +1,231 @@
-{% extends '_base.html' %} {% load static %} {% block main %}
+{% extends '_base.html' %} {% load static %} {% load widget_tweaks %} {% block main %}
+
 <div class="row">
+    <div class="card">
+        <div class="cardbody">
+            <button type="button" class="btn btn-primary btn-outline-white px-4 mt-0 mb-3">
+                
+                <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".doctor-create"><i class="mdi mdi-plus-circle-outline mr-2"></i><span style="color: white;">Add New Patient</span> </a>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="row">
+
+
+
+    {% for object in object_list %}
     <div class="col-lg-3">
         <div class="card">
             <div class="card-body text-center">
+                
                 <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".doctor-update"><i class="fas fa-edit text-info font-16"></i></a>
+                    <a href="{{object.get_delete_url}}"><i class="fas fa-trash-alt text-danger font-16"></i></a>
                 </div>
                 <img src="{% static 'assets/images/users/user-2.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Wendy Keen</h5>
-                <p class="text-muted">MD Orthopedic</p>
+                <h5 class="mb-1 client-name">Dr.{{object.name}}</h5>
+                <p class="text-muted">{{object.degree}} Orthopedic</p>
                 <p class="text-center font-14">4 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
+                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='{{object.get_absolute_url}}'">View Profile</button>
             </div>
             <!--end card-body-->
         </div>
         <!--end card-->
     </div>
     <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-4.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Helen White</h5>
-                <p class="text-muted">MS Cardiology</p>
-                <p class="text-center font-14">3 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-5.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Thomas Fant</h5>
-                <p class="text-muted">MD Neurology</p>
-                <p class="text-center font-14">10 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-6.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Justin Williams</h5>
-                <p class="text-muted">MS Psychology</p>
-                <p class="text-center font-14">4 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
+    {% endfor %}
 </div>
 <!--end row-->
 
-<div class="row">
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-6.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Wendy Keen</h5>
-                <p class="text-muted">MD Orthopedic</p>
-                <p class="text-center font-14">4 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-1.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Helen White</h5>
-                <p class="text-muted">MS Cardiology</p>
-                <p class="text-center font-14">3 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-2.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Thomas Fant</h5>
-                <p class="text-muted">MD Neurology</p>
-                <p class="text-center font-14">10 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-    <div class="col-lg-3">
-        <div class="card">
-            <div class="card-body text-center">
-                <div class="text-right">
-                    <a href="#" class="mr-2" data-toggle="modal" data-animation="bounce" data-target=".bs-example-modal-lg"><i class="fas fa-edit text-info font-16"></i></a>
-                    <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
-                </div>
-                <img src="{% static 'assets/images/users/user-5.jpg' %}" alt="user" class="rounded-circle mt-n3">
-                <h5 class="mb-1 client-name">Dr.Justin Williams</h5>
-                <p class="text-muted">MS Psychology</p>
-                <p class="text-center font-14">4 years experience in Apollo Hospital</p>
-                <button type="button" class="btn btn-sm btn-outline-primary" onclick="location.href='../hospital/doctor-profile.html'">View Profile</button>
-            </div>
-            <!--end card-body-->
-        </div>
-        <!--end card-->
-    </div>
-    <!--end col-->
-</div>
-<!--end row-->
+
+
 {% endblock main %}
+
+        {% block custome_js %}
+        <!--  Modal content for EDIT DOCTOR -->
+        <div class="modal fade bs-example-modal-lg doctor-update" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Doctor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="DoctorName">Doctor Name</label>
+                                        <input type="text" class="form-control" id="DoctorName" value="Dr.Wendy Keen" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DoctorDegree">Doctor Degree</label>
+                                        <input type="text" class="form-control" id="DoctorDegree" value="MD" required="">
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Specialties_select" class="mr-2">Specialties</label>
+                                        <select class="custom-select" id="Specialties_select">
+                                            <option selected="">Orthopedic</option>
+                                            <option value="1">Orthopedic</option>
+                                            <option value="2">Fizioterapie</option>
+                                            <option value="3">Cardiology</option>
+                                            <option value="4">Gynaecology</option>
+                                            <option value="5">Neurology</option>
+                                            <option value="6">Psychology</option>
+                                        </select>
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="row">  
+                                <div class="col-md-6">
+                                    <img src="../assets/images/users/user-8.jpg" alt="" class="thumb-md mb-2">
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile">
+                                        <label class="custom-file-label" for="customFile">Choose Photo</label>
+                                    </div>        
+                                </div>                                 
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="message">Experience Info</label>
+                                        <textarea class="form-control" rows="3" id="message" value="">4 years experience in Apollo Hospital</textarea>
+                                    </div>  
+                                </div>
+                            </div> 
+                            <button type="button" class="btn btn-sm btn-primary">Save</button>  
+                            <button type="button" class="btn btn-sm btn-danger">Delete</button>             
+                        </form>  
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal update -->   
+        <!--  Modal content for EDIT DOCTOR -->
+        
+        <div class="modal fade bs-example-modal-lg doctor-create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title mt-0" id="myLargeModalLabel">Add a New Doctor</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" action="{% url 'doctors_create' %}">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="DoctorName">Doctor Name</label>
+                                        <!-- <input type="text" class="form-control" id="DoctorName" value="Dr.Wendy Keen" required=""> -->
+                                        {% render_field form.name class="form-control" placeholder="Full Name" %}
+
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DoctorDegree">Doctor Degree</label>
+                                        <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                        {% render_field form.degree class="form-control" placeholder="Degree" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="Specialties_select" class="mr-2">Gender</label>
+                                        {% render_field form.gender class="form-control" %}
+                                        <!-- <select class="custom-select" id="Specialties_select">
+                                            <option selected="">Dental</option>
+                                            <option value="1">Orthopedic</option>
+                                            <option value="2">Fizioterapie</option>
+                                            <option value="3">Cardiology</option>
+                                            <option value="4">Gynaecology</option>
+                                            <option value="5">Neurology</option>
+                                            <option value="6">Psychology</option>
+                                        </select> -->
+                                    </div>
+                                </div>                                    
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="message">Date of Birth</label>
+                                        {% render_field form.dob class="form-control" type="date" %}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DoctorDegree">Phone</label>
+                                        <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                        {% render_field form.phone class="form-control" placeholder="Ex: +964 77..." %}
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="form-group">
+                                        <label for="DoctorDegree">Emain</label>
+                                        <!-- <input type="text" class="form-control" id="DoctorDegree" value="MD" required=""> -->
+                                        {% render_field form.email class="form-control" placeholder="Enter an email..." %}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">  
+                                                            
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="message">Experience Info</label>
+                                        <!-- <textarea class="form-control" rows="3" id="message" value="">4 years experience in Apollo Hospital</textarea> -->
+                                        {% render_field form.description rows="3" placeholder="About Me..." class="form-control" %}
+                                    </div>  
+                                </div>
+                            </div> 
+                            <button type="submit" class="btn btn-sm btn-primary">Save</button>  
+                            <!-- <button type="button" class="btn btn-sm btn-danger">Delete</button>              -->
+                        </form>  
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal create -->    
+        <!-- jQuery  -->
+
+ {% endblock %}
+
+
+    <!-- Code injected by live-server -->
+<script type="text/javascript">
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>

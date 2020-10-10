@@ -23,6 +23,8 @@ urlpatterns += (
     path('doctors/<int:pk>', views.DoctorDetailView.as_view(), name='doctors_detail'),
     path('doctors/create', views.DoctorCreateView.as_view(), name='doctors_create'),
     path('doctors/update/<int:pk>', views.DoctorUpdateView.as_view(), name='doctors_update'),
+    path('doctors/delete/<int:pk>', views.DoctorDeleteView.as_view(), name='doctors_delete'),
+    
 )
 
 urlpatterns += (
