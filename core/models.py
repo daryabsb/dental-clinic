@@ -149,6 +149,12 @@ class Patient(models.Model):
     def get_absolute_url(self):
         return reverse('patients_detail', kwargs={'pk': self.pk})
 
+    def get_update_url(self):
+        return reverse('patients_update', args=(self.pk,))
+
+    def get_delete_url(self):
+        return reverse('patients_delete', args=(self.pk,))
+
 class Appointment(models.Model):
     patient = models.ForeignKey(
         'Patient', on_delete=models.SET_NULL, 

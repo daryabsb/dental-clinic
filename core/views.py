@@ -62,6 +62,7 @@ class PatientListView(ListView):
         context = super(PatientListView, self).get_context_data(*args, **kwargs)
         form = PatientForm()
         context['form'] = form
+        print(context)
 
         return context
 
@@ -78,6 +79,14 @@ class PatientUpdateView(UpdateView):
     model = Patient
     form_class = PatientForm
     template_name = 'patients/patients_create.html'
+
+class PatientDeleteView(UpdateView):
+    model = Patient
+    # template_name = 'patients/patients_create.html'
+    success_url = '/patients/'
+
+    def get(self, *args, **kwargs):
+        return self.post(*args, **kwargs)
 
 
 # SCHEDULE VIEWS

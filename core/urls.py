@@ -33,6 +33,8 @@ urlpatterns += (
     path('patients/<int:pk>', views.PatientDetailView.as_view(), name='patients_detail'),
     path('patients/create', views.PatientCreateView.as_view(), name='patients_create'),
     path('patients/update/<int:pk>', views.PatientUpdateView.as_view(), name='patients_update'),
+    path('patients/delete/<int:pk>', views.PatientDeleteView.as_view(), name='patients_delete'),
+
 )
 
 

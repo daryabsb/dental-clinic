@@ -1,9 +1,9 @@
-{% extends '_base.html' %} {% load static %}  {% load widget_tweaks %} {% block main %}
+{% extends '_base.html' %} {% load static %} {% load widget_tweaks %} {% block main %}
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                
+
                 <!-- <button type="button" class="btn btn-primary px-4 mt-0 mb-3" onclick="location.href='../hospital/add-patient.html'"><i class="mdi mdi-plus-circle-outline mr-2"></i>Add New Patient</button> -->
                 <button type="button" class="btn btn-primary btn-outline-white px-4 mt-0 mb-3">
                 
@@ -55,10 +55,37 @@
                                             <td>18/07/2019</td>
                                             <td><span class="badge badge-soft-success">Approved</span></td>
                                             <td class="text-right">
-                                                <a href="../hospital/patient-edit.html" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
-                                                <a href="#"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+                                                <a href="{{object.get_update_url}}" class="mr-2"><i class="fas fa-edit text-info font-16"></i></a>
+                                                <a href="#" data-toggle="modal" data data-target=".confirm-delete"><i class="fas fa-trash-alt text-danger font-16"></i></a>
+
                                             </td>
                                         </tr>
+                                        <!-- MODAL CONFIRM DELETE -->
+                                        <div class="modal fade bs-example-modal-center show confirm-delete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="padding-right: 15px;" aria-hidden="true">
+                                            <div class="modal-dialog modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title mt-0" id="exampleModalLabel">Modal title</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="toast-body">
+                                                            <form method="post" action="{% url 'patients_delete' object.id %}">
+                                                                {% csrf_token %} Are you sure you want to delete {{object}}?
+                                                        </div>
+                                                        <button class="btn btn-danger btn-small">
+                                                            <a href="{{object.get_delete_url}}">Confirm</a>
+                                                            
+                                                        </button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <!-- /.modal-content -->
+                                            </div>
+                                            <!-- /.modal-dialog -->
+                                        </div>
                                         {% endfor %}
                                     </tbody>
                                 </table>
@@ -87,10 +114,7 @@
     </div>
     <!--end col-->
 </div>
-{% endblock main %}
-
-
-{% block custome_js %}
+{% endblock main %} {% block custome_js %}
 
 <div class="modal fade bs-example-modal-lg patient-create" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -120,17 +144,15 @@
                         </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label for="Specialties_select" class="mr-2">Gender</label>
-                                {% render_field form.gender class="form-control" %}
-                               
+                                <label for="Specialties_select" class="mr-2">Gender</label> {% render_field form.gender class="form-control" %}
+
                             </div>
-                        </div>                                    
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="message">Date of Birth</label>
-                                {% render_field form.dob class="form-control" type="date" %}
+                                <label for="message">Date of Birth</label> {% render_field form.dob class="form-control" type="date" %}
                             </div>
                         </div>
                         <div class="col-md-3">
@@ -148,22 +170,48 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">  
-                                                    
+                    <div class="row">
+
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="message">Experience Info</label>
                                 <!-- <textarea class="form-control" rows="3" id="message" value="">4 years experience in Apollo Hospital</textarea> -->
                                 {% render_field form.description rows="3" placeholder="About Me..." class="form-control" %}
-                            </div>  
+                            </div>
                         </div>
-                    </div> 
-                    <button type="submit" class="btn btn-sm btn-primary">Save</button>  
+                    </div>
+                    <button type="submit" class="btn btn-sm btn-primary">Save</button>
                     <!-- <button type="button" class="btn btn-sm btn-danger">Delete</button>              -->
-                </form>  
+                </form>
             </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-</div><!-- /.modal create --> 
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal create -->
+
+<!-- MODAL CONFIRM DELETE -->
+<div class="modal fade bs-example-modal-center show confirm-delete" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="padding-right: 15px;" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title mt-0" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="toast-body">
+                    Are you sure you want to delete {{object}}?
+                </div>
+                <button class="btn btn-danger btn-small">Confirm</button>
+
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 
 {% endblock custome_js %}

@@ -8,9 +8,7 @@
     <title>Metrica - Responsive Bootstrap 4 Admin Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="A premium admin dashboard template by Mannatthemes" name="description" />
-    <meta content="Mannatthemes" name="author" />
-
-    {% block custom_css %}{% endblock custom_css %}
+    <meta content="Mannatthemes" name="author" /> {% block custom_css %}{% endblock custom_css %}
 
     <!-- App favicon -->
     <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
@@ -171,34 +169,15 @@
                                     </ul>
                                 </li>
                                 <!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#"><i class="dripicons-user-group"></i>Doctors</a>
-                                    <ul class="submenu">
-                                        <li><a href="../hospital/all-doctors.html">All Doctors</a></li>
-                                        <li><a href="../hospital/add-doctor.html">Add Doctor</a></li>
-                                        <li><a href="../hospital/doctor-edit.html">Doctor Edit</a></li>
-                                        <li><a href="../hospital/doctor-profile.html">Doctor Profile</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="{% url 'doctors_list' %}"><i class="dripicons-user-group"></i>Doctors</a>
+
                                 </li>
                                 <!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#"><i class="dripicons-vibrate"></i>Patients</a>
-                                    <ul class="submenu">
-                                        <li><a href="../hospital/all-patients.html">All Patients</a></li>
-                                        <li><a href="../hospital/add-patient.html">Add Patient</a></li>
-                                        <li><a href="../hospital/patient-edit.html">Patient Edit</a></li>
-                                        <li><a href="../hospital/patient-profile.html">Patient Profile</a></li>
-                                    </ul>
+                                <li>
+                                    <a href="{% url 'patients_list' %}"><i class="dripicons-vibrate"></i>Patients</a>
                                 </li>
                                 <!--end has-submenu-->
-                                <li class="has-submenu">
-                                    <a href="#"><i class="dripicons-trophy"></i>Payments</a>
-                                    <ul class="submenu">
-                                        <li><a href="../hospital/all-payments.html">All Payments</a></li>
-                                        <li><a href="../hospital/payment-invoice.html">Payment Invoice</a></li>
-                                        <li><a href="../hospital/cashless-payments.html">Cashless Payments</a></li>
-                                    </ul>
-                                </li>
                                 <!--end has-submenu-->
                                 <li><a href="../hospital/all-rooms.html"><i class="dripicons-home"></i>All Rooms</a></li>
                                 <li><a href="../hospital/expenses.html"><i class="dripicons-document"></i>Expenses Report</a></li>
