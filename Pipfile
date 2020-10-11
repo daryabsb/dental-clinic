@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+flake8 = "*"
 
 [packages]
 django-widget-tweaks = "==1.4.8"
@@ -12,6 +13,7 @@ asgiref = "==3.2.10"
 pytz = "==2020.1"
 sqlparse = "==0.4.1"
 Django = "==3.1.2"
+flake8 = "*"
 
 [requires]
 python_version = "3.8"

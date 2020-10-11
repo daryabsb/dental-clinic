@@ -104,15 +104,18 @@
                 <li class="dropdown">
                     <a class="nav-link dropdown-toggle waves-effect waves-light nav-user pr-0" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
                         <img src="{% static 'assets/images/users/user-4.jpg' %}" alt="profile-user" class="rounded-circle" />
-                        <span class="ml-1 nav-user-name hidden-sm">Dr.Amelia <i class="mdi mdi-chevron-down"></i> </span>
+                        <span class="ml-1 nav-user-name hidden-sm">{{ request.user.name }} <i class="mdi mdi-chevron-down"></i> </span>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
-                        <a class="dropdown-item" href="#"><i class="dripicons-wallet text-muted mr-2"></i> My Wallet</a>
+                        <a class="dropdown-item" href="{% url 'doctors_detail' request.user.id %}"><i class="dripicons-user text-muted mr-2"></i> Profile</a>
                         <a class="dropdown-item" href="#"><i class="dripicons-gear text-muted mr-2"></i> Settings</a>
                         <a class="dropdown-item" href="#"><i class="dripicons-lock text-muted mr-2"></i> Lock screen</a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
+                        {% if request.user.is_authenticated %}
+                        <a class="dropdown-item" href="{% url 'logout' %}"><i class="dripicons-exit text-muted mr-2"></i> Logout</a>
+                        {% else %}
+                        <a class="dropdown-item" href="{% url 'login' %}"><i class="dripicons-exit text-muted mr-2"></i> Login</a>
+                        {% endif %}
                     </div>
                 </li>
                 <!--end dropdown-->

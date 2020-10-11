@@ -1,14 +1,62 @@
 from django.shortcuts import render, HttpResponse
+from django.conf import settings
+from django.contrib.auth import authenticate, login, logout
+from django.http import HttpResponse, HttpResponseRedirect
+
 
 from .models import User, Address, Doctor, Patient, Appointment, Schedule
 from .forms import DoctorForm, PatientForm, DoctorScheduleForm
 
-from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import View, ListView, CreateView, DetailView, UpdateView, DeleteView
 
 
 class Home(ListView):
     model = User
     template_name = "index.html"
+
+
+from django.views.generic import View
+
+class LoginView(View):
+    template_name = 'login.html'
+
+    def get(self, request):
+        return render(request, "login.html")
+
+    def post(self, request):
+        
+        username = request.POST['email']
+        password = request.POST['password']
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+
+                return HttpResponseRedirect('/patients')
+            else:
+                return HttpResponse("Inactive user.")
+        else:
+            return HttpResponseRedirect(settings.LOGIN_URL)
+
+        return render(request, "login.html")
+
+class LogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
+
+
+
+
+
+
+
+
+
+
+
 
 class DoctorListView(ListView):
     # title = Doctors
@@ -62,7 +110,7 @@ class PatientListView(ListView):
         context = super(PatientListView, self).get_context_data(*args, **kwargs)
         form = PatientForm()
         context['form'] = form
-        print(context)
+        # print(context)
 
         return context
 
@@ -80,9 +128,9 @@ class PatientUpdateView(UpdateView):
     form_class = PatientForm
     template_name = 'patients/patients_create.html'
 
-class PatientDeleteView(UpdateView):
+class PatientDeleteView(DeleteView):
     model = Patient
-    # template_name = 'patients/patients_create.html'
+    template_name = 'patients/patients_list.html'
     success_url = '/patients/'
 
     def get(self, *args, **kwargs):
